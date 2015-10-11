@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<!-- struts2 的配置文件 -->
+<struts>
+
+	<!-- 指定由 spring 负责 action 对象的创建 -->
+	<constant name="struts.objectFactory" value="spring" />
+
+	<!-- 设置匹配 *.action 的请求由struts2 处理,防止Struts2将无后缀请求亦当成正常的Action请求处理 -->
+	<constant name="struts.action.extension" value="action" />
+
+	<!-- 设置Struts2应用是否处于开发模式，通常在开发调试阶段设为true,正式上线后可设为false -->
+	<constant name="struts.devMode" value="true" />
+
+	<!-- 每次HTTP请求系统都重新加载资源文件，有助于开发 -->
+	<constant name="struts.i18n.reload" value="true" />
+
+	<!-- struts配置文件改动后，是否重新加载 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+
+
+	<!-- 设置浏览器是否缓存静态内容 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+
+	<!-- 设置Web应用的默认编码集为UTF-8 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<!-- 让struts2支持动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+	<!-- Action名称中是否还是用斜线 -->
+	<constant name="struts.enable.SlashesInActionNames" value="false" />
+
+	<!-- 允许标签中使用表达式语法 -->
+	<constant name="struts.tag.altSyntax" value="true" />
+
+	<!-- 上传单个文件的最大大小 -->
+	<constant name="struts.multipart.maxSize" value="55000000" />
+
+	<!-- 对于WebLogic,Orion,OC4J此属性应该设置成true -->
+	<constant name="struts.dispatcher.parametersWorkaround" value="false" />
+
+	<!-- 设置Web应用的默认Locale为zh_CN -->
+	<constant name="struts.locale" value="zh_CN" />
+
+	<!-- 以下是 package 与 action 的配置 -->
+	<package name="base" extends="struts-default">
+		<!-- 配置自定义拦截器 -->
+		<interceptors>
+			<!-- 显示参数与参数值 -->
+			<interceptor name="displayParameters"
+				class="com.smartcommunity.interceptor.DisplayParameters" />
+			<interceptor name="exceptionInterceptor"
+				class="com.smartcommunity.interceptor.ExceptionInterceptor">
+
+				<param name="logLevel">error</param>
+			</interceptor>
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="interceptorStack">
+				<!-- 顺序执行 -->
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="displayParameters" />
+				<interceptor-ref name="exceptionInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 定义默认拦截器 -->
+		<default-interceptor-ref name="interceptorStack" />
+
+
+		<!-- 定义全局 result -->
+		<global-results>
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="failed">/result/false.json</result>
+			<result name="sql">/exception/sqlException.json</result>
+			<result name="exception">/exception/javaException.json</result>
+			<result name="tologin">/result/tologin.json</result> <!-- type="redirect" -->
+			<result name="permision">/result/permision.json</result>
+		</global-results>
+
+		<!-- 定义全局异常映射 -->
+		<global-exception-mappings>
+			<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
+			<exception-mapping exception="java.lang.Exception"
+				result="exception" />
+		</global-exception-mappings>
+	</package>
+	<!-- 商品模块 -->
+	<package name="product" namespace="/product" extends="base">
+
+		<action name="getByShop" class="productAction" method="getByShop">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="getPropertyValue" class="productAction" method="getPropertyValue">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="getByType" class="productAction" method="getByType">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="getByProperty" class="productAction" method="getByProperty">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="add" class="productAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="update" class="productAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="delete" class="productAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 店铺模块 -->
+	<package name="shop" namespace="/shop" extends="base">
+		<!-- -->
+		<action name="getByUserId" class="shopAction" method="getByUserId">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 根据商品 Id 查询 -->
+		<action name="getByShopId" class="shopAction" method="getByShopId">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="getByName" class="shopAction" method="getByName">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="add" class="shopAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+
+		</action>
+
+		<action name="close" class="shopAction" method="close">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="update" class="shopAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+
+	<!-- 商品类别模块 -->
+	<package name="producttype" namespace="/producttype" extends="base">
+
+		<action name="get" class="poductTypeAction" method="get">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="add" class="poductTypeAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="delete" class="poductTypeAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="update" class="poductTypeAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 商品评价模块 -->
+	<package name="comment" namespace="/comment" extends="base">
+
+		<action name="getByProductId" class="commentAction" method="getByProductId">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="getByCommentType" class="commentAction" method="getByCommentType">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="add" class="commentAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="delete" class="commentAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="update" class="commentAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="append" class="commentAction" method="append">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 用户收藏店铺模块 -->
+	<package name="collect" namespace="/collect" extends="base">
+
+		<action name="get" class="collectAction" method="get">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="add" class="collectAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+
+		<action name="delete" class="collectAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="update" class="collectAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+	</package>
+
+	<!-- 用户模块 -->
+	<package name="user" namespace="/user" extends="base">
+
+		<!-- 注册 -->
+		<action name="register" class="userAction" method="register">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 登陆 -->
+		<action name="login" class="userAction" method="login">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+
+		</action>
+		<!-- 登出 -->
+		<action name="logout" class="userAction" method="logout">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 更新信息 -->
+		<action name="update" class="userAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 添加收货地址 -->
+		<action name="addAddress" class="userAction" method="addAddress">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 更新收货地址 -->
+		<action name="updateAddress" class="userAction" method="updateAddress">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 删除收货地址 -->
+		<action name="deleteAddress" class="userAction" method="deleteAddress">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 查询收货地址 -->
+		<action name="getAddress" class="userAction" method="getAddress">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 订单模块 -->
+	<package name="order" namespace="/order" extends="base">
+
+		<!-- 提交订单 -->
+		<action name="submit" class="orderAction" method="submit">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 撤销订单 -->
+		<action name="delete" class="orderAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 查询订单 -->
+		<action name="get" class="orderAction" method="get">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 根据店铺查询订单 -->
+		<action name="getByShop" class="orderAction" method="getByShop">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 商品属性模块 -->
+	<package name="productproperty" namespace="/productproperty"
+		extends="struts-default">
+
+		<!-- 添加 -->
+		<action name="add" class="productPropertyAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 删除 -->
+		<action name="delete" class="productPropertyAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 查询 -->
+		<action name="get" class="productPropertyAction" method="get">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 修改 -->
+		<action name="update" class="productPropertyAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 商品属性值模块 -->
+	<package name="propertyvalue" namespace="/propertyvalue"
+		extends="struts-default">
+
+		<!-- 添加 -->
+		<action name="add" class="propertyValueAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 删除 -->
+		<action name="delete" class="propertyValueAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 查询 -->
+		<action name="get" class="propertyValueAction" method="get">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 修改 -->
+		<action name="update" class="propertyValueAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 评价类型模块 -->
+	<package name="commenttype" namespace="/commenttype" extends="base">
+
+		<!-- 添加 -->
+		<action name="add" class="commentTypeAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 删除 -->
+		<action name="delete" class="commentTypeAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 查询 -->
+		<action name="get" class="commentTypeAction" method="get">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 修改 -->
+		<action name="update" class="commentTypeAction" method="update">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 搜索商品模块 -->
+	<package name="productshow" namespace="/productshow" extends="base">
+
+		<!-- 根据产品 Id 查询 -->
+		<action name="getByProductId" class="searchAction" method="getByProductId">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 根据产品类型查询 -->
+		<action name="getByProductType" class="searchAction" method="getByProductType">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 根据产品属性查询 -->
+		<action name="getByProductProperty" class="searchAction"
+			method="getByProductProperty">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 通过商品名查询 -->
+		<action name="getByName" class="searchAction" method="getByName">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+
+
+	<!-- 购物车模块 -->
+	<package name="cart" namespace="/cart" extends="base">
+
+		<!-- 添加购物车 -->
+		<action name="add" class="cartAction" method="add">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 删除购物车商品 -->
+		<action name="delete" class="cartAction" method="delete">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 查询购物车 -->
+		<action name="get" class="cartAction" method="get">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+	<!-- android 更新 -->
+	<package name="android" namespace="/android" extends="base">
+		<result-types>
+			<result-type name="multistream"
+				class="com.smartcommunity.util.MultiStreamResult"></result-type>
+		</result-types>
+		<action name="upload" class="androidUpdateAction" method="upload">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 获取当前版本与特性 -->
+		<action name="getVersion" class="androidUpdateAction" method="getLatestVersion">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 下载最新版本 -->
+		<action name="download" class="androidUpdateAction" method="download">
+			<result name="success" type="multistream">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">inputStream</param>
+				<param name="bufferSize">4096</param>
+				<param name="contentDisposition">filename="${filename}"</param>
+				<param name="contentLength">${contentLength}</param>
+			</result>
+		</action>
+
+	</package>
+</struts>

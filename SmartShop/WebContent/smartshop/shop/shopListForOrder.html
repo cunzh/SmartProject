@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<title>卖家店铺列表</title>
+
+<style>
+	.bodyStyle{
+		margin-top: 10px;
+	}
+</style>
+
+</head>
+<body class="bodyStyle">
+	<div class="container-fluid">
+
+		<div class="panel panel-info">
+			<div class="panel-heading text-center">
+				<b>选择店铺</b>
+			</div>
+			<div class="panel-body">
+				<table id="shop_table" class="table table-bordered  table-hover">
+					<thead>
+						<tr class="active">
+							<th width="20%">店铺名称</th>
+							<th width="50%">店铺描述</th>
+							<th width="15%">开店时间</th>
+							<th width="15%" >查看店铺订单</th>		
+						</tr>
+					</thead>
+					<tbody id="shop_tableBody">
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>	
+				</table>
+				<!--  
+				<span id="sp" class="pageshow"></span>
+				<ul class="pagination pull-right pagehandle pagination-sm" id="pagination"></ul>
+				-->
+			</div>
+		</div>
+	</div>
+
+
+<script src="../asset/js/jquery-1.11.1.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../asset/js/constant.js"></script>
+<script src="../asset/js/table.js"></script>
+<script src="../asset/js/getData.js"></script>
+<script src="../asset/js/shop/shopListForOrder.js"></script>
+</body>
+</html>

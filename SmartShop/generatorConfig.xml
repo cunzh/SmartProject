@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<context id="context1">
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/smartshop?characterEncoding=utf8"
+			userId="root" password="admin" />
+		<javaModelGenerator targetPackage="hust.shop.pojo"
+			targetProject="SmartShop/src" />
+		<sqlMapGenerator targetPackage="hust.shop.mapper"
+			targetProject="SmartShop/src" />
+		<javaClientGenerator targetPackage="hust.shop.mapper"
+			targetProject="SmartShop/src" type="XMLMAPPER" />
+		<table tableName="product_type" />
+	</context>
+</generatorConfiguration>

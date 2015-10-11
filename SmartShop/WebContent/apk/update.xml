@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl href='students.xsl'?>
+
+<update>
+	<version value="1.0.2"></version>
+	<feature value="修复功能" />
+	<feature value="1.修复手机端搜索分类商品bug" />
+	
+	<feature value="" />
+	<feature value="新增功能" />
+	<feature value="1.首页可根据关键字搜索商品" />
+	<feature value="2.点击商品后可进行查看商品详情" />
+	<feature value="3.商品详情界面可以加入购物车或者直接下单" />
+	<feature value="4.可以进入购物车批量下单，或者删除" />
+	<feature value="5.个人中心可以查看和修改个人信息，包括收货地址" />
+	<feature value="6.可以在个人中心查看收藏的店铺" />
+	<feature value="7.可以查看订单历史" />
+	
+</update>

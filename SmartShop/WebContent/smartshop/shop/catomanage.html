@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>商品类别管理</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"> 
+
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../asset/css/jquery-ui.css" rel="stylesheet">
+
+  <style>
+      .panel-body{
+        font-size:18px;
+      }
+      .col-md-1{
+        font-size:18px;
+      }
+      .input-textsize{
+        font-size:14px;
+      }
+      
+  </style>
+</head>
+<body style="padding-top: 2px;">
+    <div class="container">
+      <div class="panel" style="background-color:#00CACA;">
+        <div class="panel-heading text-center"><h4><b>商品类别</b></h4></div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"><b>新增分类</b></h3>
+          </div>
+        <div class="panel-body">
+          <form class="form-horizontal" id="uploadForm" enctype="multipart/form-data" method="post" action="">
+          <div class="row"> 
+            <div class="col-md-1">
+              <label style="float:right">类别名</label>
+            </div>
+            <div class="col-md-3">
+              <input type="text" name="productType.name" class="form-control"  id="productType_name">
+            </div>           
+            <div class="col-md-1 col-md-offset-1">
+              <input type="button" id="button_add" value="添加" class="btn btn-warning ">
+            </div>
+          </div>
+          </div>
+
+            <div class="panel-heading"><b>类别管理</b></div>
+              <div class="panel-body">
+              <div class="row"> 
+                <ul class="nav navbar-nav ">
+                  
+                  <li>
+                    <form class="form-horizontal" id="uploadForm" enctype="multipart/form-data" method="post" action="" class="form-control"> 
+                    <input type="text" style="width:300px"   placeholder="商品类别名"> 
+                    <button type="submit" id="button_search" class="btn btn-default">搜索</button>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+              </br>
+              <div class="row"> 
+                <div class="table-responsive">
+                  <table id="notice_table" class="table table-bordered table-striped table-hover tablesorter">
+                  <thead>
+                    <tr class="success">
+                      <th width="70%" align="center" class="titlegrey">商品类别名</td>
+                      <th align="center" class="titlegrey">操作</td>   
+                    </tr>
+                  </thead>
+                  <tbody id="notice_tableBody">
+                    <tr>
+                      <td></td>
+                      <td></td>  
+                    </tr>
+                  </tbody> 
+                </table>
+                <!--  <span id="sp" class="pageshow"></span> -->
+                <ul class="pagination pull-right pagehandle" id="pagination"></ul>
+              <!--
+                 <table id="cart_info" class="table table-bordered table-striped table-hover tablesorter">
+    <tr>
+      <td width="10%" align="center" class="titlegrey">选择</td>
+      <td width="20%" align="center" class="titlegrey">商品类别ID</td>
+      <td width="40%" align="center" class="titlegrey">商品类别名</td>
+      <td align="center" class="titlegrey">操作</td>
+    </tr>
+    <tr>
+      <td width="4%" align="center"><font color="#CC0000"><input type='checkbox' name='product' value='New' style="width:20px;height:20px"></font></td>
+      <td align="center" class="inputHeader">123</td>
+      <td align="center" class="inputHeader"><label>服装</label></td>
+      <td width="20%" align="center" class="inputHeader">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" href="remote.html">修改</button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">类别修改</h4>
+                </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                <form>
+                  <div class="form-group">
+                  </br>
+                  </br>
+                  <div class="row"> 
+                      <div class="col-md-4 col-md-offset-1">
+                        <label style="float:right">商品类别名</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="productType.name" class="form-control" id="productType_name" readonly="">
+                    </div>
+                  </div>
+                  </br>
+                  </br>
+                  <div class="row">
+                    <div class="col-md-4 col-md-offset-1">
+                        <label style="float:right">上级分类</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="productType.upclass" class="form-control" id="productType_upclass">
+                    </div>
+                  </div>
+                  </br>
+                  </br>
+                  <div class="row">
+                    <div class="col-md-4 col-md-offset-6">
+                        
+                    </div>
+                    </div>
+                  
+                </div>
+                </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">确定</button>
+            </div>
+          </div>
+      </div>
+  </div>
+  <button type="button" class="btn btn-warning" onClick="if(window.confirm('确定删除？'));else return false">删除</button>
+      </td>
+    </tr>
+ 
+  </table> 
+                
+                <ul class="pagination pull-right pagehandle" id="pagination"></ul> -->
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+
+           
+           
+        </div> 
+      </div>     
+    </div>
+
+
+
+  <script src="../asset/js/jquery-1.11.1.min.js"></script>
+  <script src="../asset/js/getData.js"></script>
+  <script src="../asset/js/jquery-ui.custom.min.js"></script>
+  <script src="../asset/js/datePicker.js"></script>
+  <script src="../asset/js/table.js"></script> 
+  
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
+  <script src="../asset/js/jquery.dataTables.min.js" type="text/javascript"></script>
+  <script src="../asset/js/jqPaginator.js"></script>
+  <script src="../asset/js/shop/catomanage.js"></script>
+ 
+</body>
+
+</html>

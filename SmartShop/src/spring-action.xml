@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- spring 配置 action 的文件 -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd ">
+	<bean id="shopAction" class="hust.shop.action.ShopAction" scope="prototype">
+		<property name="shopService" ref="shopService"></property>
+	</bean>
+	<bean id="productAction" class="hust.shop.action.ProductAction"
+		scope="prototype">
+		<property name="productService" ref="productService"></property>
+	</bean>
+	<bean id="userAction" class="hust.shop.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="poductTypeAction" class="hust.shop.action.ProductTypeAction"
+		scope="prototype">
+		<property name="productTypeService" ref="productTypeService"></property>
+	</bean>
+	<bean id="commentAction" class="hust.shop.action.CommentAction"
+		scope="prototype">
+		<property name="commentService" ref="commentService"></property>
+	</bean>
+	<bean id="collectAction" class="hust.shop.action.CollectAction"
+		scope="prototype">
+		<property name="collectService" ref="collectService"></property>
+	</bean>
+	<bean id="productPropertyAction" class="hust.shop.action.ProductPropertyAction"
+		scope="prototype">
+		<property name="productPropertyService" ref="productPropertyService"></property>
+	</bean>
+	<bean id="propertyValueAction" class="hust.shop.action.PropertyValueAction"
+		scope="prototype">
+		<property name="productPropertyValueService" ref="productPropertyValueService"></property>
+	</bean>
+	<bean id="orderAction" class="hust.shop.action.OrderAction" scope="prototype">
+		<property name="orderService" ref="orderService"></property>
+	</bean>
+	<bean id="commentTypeAction" class="hust.shop.action.CommentTypeAction"
+		scope="prototype">
+		<property name="commentTypeService" ref="commentTypeService"></property>
+	</bean>
+	<bean id="searchAction" class="hust.shop.action.SearchAction"
+		scope="prototype">
+		<property name="searchService" ref="searchService"></property>
+	</bean>
+	
+	<bean id="cartAction" class="hust.shop.action.CartAction"
+		scope="prototype">
+		<property name="cartService" ref="cartService"></property>
+	</bean>
+		<bean id="androidUpdateAction" class="hust.shop.action.AndroidUpdateAction"
+		scope="prototype">
+	</bean>
+	
+</beans>  

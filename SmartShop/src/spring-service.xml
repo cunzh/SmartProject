@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- spring 配置 service 的文件 -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd ">
+	<bean id="shopService" class="hust.shop.service.impl.ShopServiceImpl">
+		<property name="shopMapper" ref="shopMapper"></property>
+		<property name="userMapper" ref="userMapper"></property>
+	</bean>
+
+	<bean id="productService" class="hust.shop.service.impl.ProductServiceImpl">
+		<property name="productMapper" ref="productMapper"></property>
+		<property name="imageMapper" ref="imageMapper"></property>
+		<property name="productPropertyValueMapper" ref="productPropertyValueMapper"></property>
+		<property name="propertyValueMapper" ref="propertyValueMapper"></property>
+	</bean>
+	<bean id="userService" class="hust.shop.service.impl.UserServiceImpl">
+		<property name="userMapper" ref="userMapper"></property>
+		<property name="addressMapper" ref="addressMapper"></property>
+	</bean>
+	<bean id="productTypeService" class="hust.shop.service.impl.ProductTypeServiceImpl">
+		<property name="productTypeMapper" ref="productTypeMapper"></property>
+	</bean>
+
+	<bean id="commentService" class="hust.shop.service.impl.CommentServiceImpl">
+		<property name="commentMapper" ref="commentMapper"></property>
+	</bean>
+	<bean id="collectService" class="hust.shop.service.impl.CollectServiceImpl">
+		<property name="collectMapper" ref="collectMapper"></property>
+	</bean>
+	<bean id="productPropertyService" class="hust.shop.service.impl.ProductPropertyServiceImpl">
+		<property name="productPropertyMapper" ref="productPropertyMapper"></property>
+		<property name="propertyValueMapper" ref="propertyValueMapper"></property>
+	</bean>
+	<bean id="productPropertyValueService" class="hust.shop.service.impl.ProductPropertyValueServiceImpl">
+		<property name="propertyValueMapper" ref="propertyValueMapper"></property>
+	</bean>
+	
+	<bean id="orderService" class="hust.shop.service.impl.OrderServiceImpl">
+		<property name="ordersMapper" ref="ordersMapper"></property>
+		<property name="productMapper" ref="productMapper"></property>
+		<property name="ordersProductMapper" ref="ordersProductMapper"></property>
+		<property name="propertyValueMapper" ref="propertyValueMapper"></property>
+		<property name="ordersPropertyValueMapper" ref="ordersPropertyValueMapper"></property>
+		<property name="productPropertyMapper" ref="productPropertyMapper"></property>
+	</bean>
+	<bean id="commentTypeService" class="hust.shop.service.impl.CommentTypeServiceImpl">
+		<property name="commentTypeMapper" ref="commentTypeMapper"></property>
+	</bean>
+	<bean id="searchService" class="hust.shop.service.impl.SearchServiceImpl">
+		<property name="productMapper" ref="productMapper"></property>
+		<property name="productPropertyValueMapper" ref="productPropertyValueMapper"></property>
+		<property name="propertyValueMapper" ref="propertyValueMapper"></property>
+	</bean>
+	
+	<bean id="cartService" class="hust.shop.service.impl.CartServiceImpl">
+		<property name="cartMapper" ref="cartMapper"></property>
+	</bean>
+</beans>  

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>修改商品信息</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="../asset/css/jquery.dataTables.min.css" rel="stylesheet">
+
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../asset/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="../asset/css/jquery-ui.css" rel="stylesheet">
+	 <style>
+      .panel-heading {
+      		font-size: 21px;
+      	}
+
+      	.row {
+       		margin-top: 16px;
+       }
+
+    </style>
+
+    </style>
+
+    <style>
+	.upload_box{width:960px; margin:1em auto;}
+
+    .upload_box{width:960px; margin:1em auto;}
+
+	.upload_main{border-width:1px 1px 2px; border-style:solid; border-color:#ccc #ccc #ddd; background-color:#fbfbfb;}
+	.upload_choose{padding:1em;}
+	.upload_drag_area{display:inline-block; width:98%; padding:4em 0; margin-left:.5em; border:1px dashed #ddd; background:#fff url() no-repeat 20px center; color:#999; text-align:center; vertical-align:middle;}
+	.upload_drag_hover{border-color:#069; box-shadow:inset 2px 2px 4px rgba(0, 0, 0, .5); color:#333;}
+	.upload_preview{border-top:1px solid #bbb; border-bottom:1px solid #bbb; background-color:#fff; overflow:hidden; _zoom:1;}
+	.upload_append_list{height:300px; padding:0 1em; float:left; position:relative;}
+	.upload_delete{margin-left:2em;}
+	.upload_image{max-height:250px; padding:5px;}
+	.upload_submit{padding-top:1em; padding-left:1em;}
+	.upload_submit_btn{display:none; height:32px; font-size:14px;}
+	.upload_loading{height:250px; background:url() no-repeat center;}
+	.upload_progress{display:none; padding:5px; border-radius:10px; color:#fff; background-color:rgba(0,0,0,.6); position:absolute; left:25px; top:45px;}
+	
+	</style>
+
+</head>
+<body style="padding-top: 10px;">
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+		  	<div class="panel-heading text-center"><b>修改商品信息</b></div>
+		  	<div class="panel-body">
+		    	<form class="form-horizontal" id="uploadForm" enctype="multipart/form-data" method="post" action="../../product/add.action">
+				   <div class="row">
+						    <div class="col-md-2 col-md-offset-1">
+							<label class="">标题</label>
+							<input type="text" name="product.name" class="form-control"  id="product_title">
+						    </div>
+                          </div>
+                   <div class="row">
+				   <div class="col-md-2 col-md-offset-1">
+							<label class="">商品类别</label>
+							<select id="product_type" name="product.typeId" class="form-control select_font">
+								<option value="">---请选择---</option>
+							</select>
+						    </div>
+                    </div>
+
+                    <div class="row">
+						<div class="col-md-2 col-md-offset-1">
+							<label class="">价格</label>
+							<input type="text" name="product.price" class="form-control"  id="product_price">
+						</div>
+                      </div> 
+						
+					 <div class="row">
+						<div class="col-md-8 col-md-offset-1">
+							<label class="">简单描述</label>
+							<input type="text" id="product_simple" name="product.simpleDescription" class="form-control"  >
+						</div>
+				    </div>
+						 <div class="row">
+						<div class="col-md-8 col-md-offset-1">
+							<label class="">详细描述</label>
+							<textarea id="product_complex" name="product.complexDescription" class="form-control input-textsize" placeholder="描述内容" rows="5" required></textarea>
+						</div>
+				    </div>				    
+				     <div class="row"> 
+	                  	<div class="col-md-2 col-md-offset-5">
+	                    	<input type="button" id="button_submit" value="保存修改" class="btn btn-primary btn-lg">
+	                  	</div>
+	                  	<div class="col-md-3">
+	                    	<input type="button" id="button_reset" value="返回" class="btn btn-danger btn-lg">
+	                  	</div>
+	                </div>
+
+		    	</form>
+		  	</div>
+		</div>
+
+	</div>
+    <script src="../asset/js/jquery-1.11.1.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="../asset/js/jquery.cookie.js"></script>
+	<script src="../asset/js/jquery-ui.custom.min.js"></script>
+	<script src="../asset/js/getData.js"></script>
+	<script src="../asset/js/table.js"></script> 
+	<script src="../asset/js/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src="../asset/js/shop/publishproduct2.js"></script>
+
+</body>
+
+</html>
